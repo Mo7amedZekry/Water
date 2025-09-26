@@ -6,7 +6,7 @@
     
     <title>وايت مياه الرياض صالحة للشرب | توصيل 24/7 لكل الأحياء | زياد الدوسري</title>
     
-    <meta name="description" content="أسرع وايت مياه في الرياض (6، 18، 20 طن). مياه شرب نقية للمنازل والمطاعم والمشاريع. اطلب الآن، متواجدون 24 ساعة لجميع أحياء الرياض.">
+    <meta name="description" content="أسرع وايت مياه في الرياض (6 و 18 طن ). مياه شرب نقية للمنازل والمطاعم والمشاريع. اطلب الآن، متواجدون 24 ساعة لجميع أحياء الرياض.">
     
     <meta name="keywords" content="وايت مياه الرياض, مياه شرب صالحة, توصيل مياه, وايت مياه 24 ساعة, زياد الدوسري, وايت 18 طن الرياض, وايت مياه شمال الرياض">
     
@@ -36,7 +36,6 @@
     }
     </script>
     <style>
-        /* [التنسيقات CSS بالكامل كما تم الاتفاق عليها - بدون تنسيق call-box] */
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
         body {
             font-family: 'Tajawal', sans-serif;
@@ -65,7 +64,7 @@
             margin-top: 20px;
         }
 
-        /* القائمة */
+        /* القائمة الجانبية (Sidebar) */
         .sidebar {
             width: 250px;
             background-color: #0056b3;
@@ -95,7 +94,8 @@
             text-align: center;
             padding: 15px;
             background: #003a85;
-            color: #ffd700;
+            color: #ffffff;
+            position: relative; /* لوضع زر الإغلاق */
         }
         .sidebar-header h2 {
             font-size: 20px;
@@ -108,17 +108,34 @@
             margin: 5px 0 0;
             color: #ffffff;
         }
-
-        .menu-toggle {
+        
+        /* زر إغلاق القائمة (X) */
+        .close-sidebar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
             font-size: 24px;
+            color: #ffd700;
+            cursor: pointer;
+            padding: 5px;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+        .close-sidebar:hover {
+            color: white;
+        }
+
+        /* زر فتح القائمة (☰) - تم تصغيره و إزالة التثبيت (fixed) */
+        .menu-toggle {
+            font-size: 20px; /* تصغير حجم الزر */
             cursor: pointer;
             color: #0056b3;
-            position: fixed;
-            top: 20px;
-            right: 20px; 
-            z-index: 1001;
+            position: absolute;
+            top: 15px; /* رفع الزر قليلاً */
+            right: 15px; /* تقريب الزر قليلاً */
+            z-index: 999; 
             background-color: white;
-            padding: 3px 8px;
+            padding: 5px 10px; /* تصغير الهوامش */
             border-radius: 4px;
             transition: transform 0.3s;
             border: 2px solid #0056b3; 
@@ -126,13 +143,15 @@
         .menu-toggle:hover { transform: scale(1.1); }
 
         .content { padding: 20px; transition: opacity 0.3s ease; }
-        .content.dimmed { opacity: 0.5; }
+        /* تم إزالة .content.dimmed لتجنب تأثير التبييض/التعتيم */
 
         .header {
             background: linear-gradient(90deg, #0056b3, #003a85);
             color: white;
             text-align: center;
             padding: 30px 10px;
+            position: relative; 
+            padding-top: 50px; /* لترك مساحة كافية لزر القائمة أعلاه */
         }
         .header h1 { font-size: 2rem; font-weight: 700; margin: 0; }
         .header p { font-size: 1.2rem; margin-top: 10px; }
@@ -171,7 +190,7 @@
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            max-width: 900px;
+            max-width: 800px; 
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.5s ease, transform 0.5s ease;
@@ -189,7 +208,7 @@
         .footer a { color: #ffd700; text-decoration: none; font-weight: bold; }
         .footer a:hover { text-decoration: underline; }
 
-        /* زر الواتساب العائم */
+        /* زر الواتساب العائم (ثابت دائماً) */
         .whatsapp-float {
             position: fixed;
             bottom: 20px;
@@ -210,33 +229,7 @@
         }
         .whatsapp-float .btn:hover { transform: scale(1.05); }
 
-        /* تحسين قسم الأسعار (Pricing Table) */
-        .pricing-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            text-align: center;
-        }
-        .pricing-table th, .pricing-table td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            font-size: 1.1rem;
-        }
-        .pricing-table th {
-            background-color: #0056b3;
-            color: white;
-        }
-        .pricing-table tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        .note {
-            font-size: 0.9em;
-            color: #888;
-            margin-top: 15px;
-            text-align: right;
-        }
-
-        /* تنسيق آراء العملاء الجديدة */
+        /* تنسيق آراء العملاء */
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -265,11 +258,53 @@
             padding-top: 8px;
             border-top: 1px dashed #ddd;
         }
+        
+        /* تنسيق الأيقونات الجديدة (1.webp و 2.jpg) */
+        #features .feature-icon,
+        #prices .price-icon {
+            width: 80px; 
+            height: auto;
+            margin-bottom: 15px;
+            display: block; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* تنسيق صورة الخدمات الجديدة */
+        #services .water-quality-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 10px;
+            margin: 15px auto 25px;
+            display: block;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* تنسيق قسم الأحياء كنقاط */
+        #areas ul {
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 15px 30px; 
+            margin-bottom: 20px;
+            padding: 0;
+            list-style: none;
+        }
+        #areas ul li {
+            flex-basis: 40%;
+            font-weight: bold;
+            color: #0056b3;
+            line-height: 1.5;
+        }
+        
 
         @media (max-width: 600px) {
             .sidebar { width: 200px; right: -200px; }
             .hero img { max-width: 95%; }
-            .section { padding: 20px; }
+            .section { 
+                padding: 20px; 
+                max-width: 95%; 
+            }
             .header h1 { font-size: 1.6rem; }
             .order-now { font-size: 16px; }
             .section h2 { font-size: 1.5rem; }
@@ -280,34 +315,38 @@
             .testimonials-grid {
                 grid-template-columns: 1fr;
             }
+            #areas ul li {
+                flex-basis: 100%; 
+            }
         }
     </style>
 </head>
 <body>
-    <div class="menu-toggle" onclick="toggleSidebar()" role="button" aria-label="فتح وإغلاق القائمة" aria-expanded="false">☰</div>
-
-    <div class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h2>مؤسسة زياد عبدالله<br>فهد الدوسري</h2>
-            <p>🚚 وايت مياه صالحة للشرب</p>
-            <hr>
-        </div>
-        <ul>
-            <li><a href="#home">🏠 الرئيسية</a></li>
-            <li><a href="#about">ℹ️ من نحن</a></li>
-            <li><a href="#services">💧 خدماتنا</a></li>
-            <li><a href="#areas">📍 أحياء الرياض</a></li>
-            <li><a href="#prices">💵 أسعارنا</a></li>
-            <li><a href="#testimonials">⭐ آراء العملاء</a></li>
-            <li><a href="#contact">📞 التواصل</a></li>
-        </ul>
-    </div>
-
     <div class="content" id="content">
         <div class="header" id="home">
+            <div class="menu-toggle" onclick="toggleSidebar()" role="button" aria-label="فتح وإغلاق القائمة" aria-expanded="false">☰</div>
             <h1>وايت مياه الرياض صالحة للشرب 24 ساعة</h1>
-            <p>مؤسسة زياد الدوسري – توصيل سريع لكافة أحجام الوايتات (6، 18، 20 طن)</p>
+            <p>مؤسسة زياد الدوسري – توصيل سريع لكافة أحجام الوايتات (6 و 18 طن)</p>
             <a href="tel:+966560898767" class="order-now">📞 اطلب الآن</a>
+        </div>
+        
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                 <span class="close-sidebar" onclick="toggleSidebar()" role="button" aria-label="إغلاق القائمة">X</span>
+                <h2>مؤسسة زياد عبدالله<br>فهد الدوسري</h2>
+                <p>🚚 وايت مياه صالحة للشرب</p>
+                <hr>
+            </div>
+            <ul>
+                <li><a href="#home">🏠 الرئيسية</a></li>
+                <li><a href="#about">ℹ️ من نحن</a></li>
+                <li><a href="#services">💧 خدماتنا</a></li>
+                <li><a href="#features">🏆 مميزاتنا</a></li>
+                <li><a href="#areas">📍 أحياء الرياض</a></li>
+                <li><a href="#prices">💵 الأسعار</a></li>
+                <li><a href="#testimonials">⭐ آراء العملاء</a></li>
+                <li><a href="#contact">📞 التواصل</a></li>
+            </ul>
         </div>
 
         <div class="hero">
@@ -316,7 +355,7 @@
 
         <div class="section" id="about">
             <h2>من نحن</h2>
-            <p>مؤسسة زياد عبدالله فهد الدوسري هي مؤسسة وطنية متخصصة في توفير **وايت مياه نقية وصالحة للشرب** داخل **الرياض**. نلتزم بتقديم خدمة عالية الجودة بأسعار منافسة وتوصيل سريع يشمل جميع الأحياء على مدار الساعة. هدفنا أن نوفر لعملائنا مياه آمنة ونقية في أي وقت من اليوم باستخدام شاحنات معقمة وأجهزة حديثة لضمان سلامة المياه. **نحن وايت مياه 24 ساعة جاهز لخدمة خزاناتكم.**</p>
+            <p>مؤسسة زياد عبدالله فهد الدوسري هي مؤسسة وطنية متخصصة في توفير وايت مياه نقية وصالحة للشرب داخل الرياض. نلتزم بتقديم خدمة عالية الجودة بأسعار منافسة وتوصيل سريع يشمل جميع الأحياء على مدار الساعة. هدفنا أن نوفر لعملائنا مياه آمنة ونقية في أي وقت من اليوم باستخدام شاحنات معقمة وأجهزة حديثة لضمان سلامة المياه. نحن وايت مياه 24 ساعة جاهز لخدمة خزاناتكم.</p>
             
             <div class="contact-buttons-container">
                 <a href="tel:+966560898767" class="order-now">📞 اتصل بنا</a>
@@ -325,26 +364,45 @@
         </div>
 
         <div class="section" id="services">
-            <h2>خدماتنا</h2>
-            <p>نقدم خدمة توصيل **وايت مياه الشرب** عالية النقاء باستخدام أسطول من الوايتات المعقمة:</p>
+            <h2>خدماتنا (مياه نقية مضمونة)</h2>
+            <img src="./3.webp" alt="صورة توضيحية لنقاء المياه وشفافيتها" class="water-quality-image">
+            <p style="text-align: center; font-weight: bold; color: #0056b3;">نضمن لك أعلى معايير الجودة والنقاء لمياه الشرب!</p>
+            <p>نقدم خدمة توصيل ايت مياه الشرب عالية النقاء باستخدام أسطول من الوايتات المعقمة:</p>
             <ul style="list-style: none; padding-right: 0;">
-                <li>✅ توفير وايت مياه صالحة للشرب بأحجام مختلفة (<span style="font-weight: bold; color: #0056b3;">6 طن، 18 طن، 20 طن</span>)</li>
-                <li>✅ توصيل فوري لجميع أحياء **الرياض** خلال **24 ساعة**</li>
+                <li>✅ توفير وايت مياه صالحة للشرب بأحجام مختلفة (<span style="font-weight: bold; color: #0056b3;">6 طن، 18 طن </span>)</li>
+                <li>✅ توصيل فوري لجميع أحياء الرياض خلال 24 ساعة</li>
                 <li>✅ خدمة توريد المياه للمنازل، الفلل، المشاريع الإنشائية، والمسابح</li>
                 <li>✅ <span style="font-weight: bold; color: #0056b3;">التوصيل إلى المطاعم والمقاهي والفنادق</span></li>
                 <li>✅ أسعار منافسة وخصومات خاصة للعقود الشهرية</li>
             </ul>
         </div>
-
+        
+        <div class="section" id="features" style="text-align: center;">
+            <img src="./1.webp" alt="أيقونة شارة التميز والخدمة الموثوقة" class="feature-icon">
+            <h2>لماذا نحن خيارك الأفضل؟</h2>
+            <ul style="list-style: none; padding-right: 0; text-align: right;">
+                <li>🏆 الجودة والالتزام: مياه نقية صالحة للشرب، مطابقة للمواصفات السعودية.</li>
+                <li>🕒 خدمة 24/7: نحن متاحون على مدار الساعة لخدمة طوارئ المياه.</li>
+                <li>🚀 سرعة التوصيل: أسرع توصيل وايت مياه في الرياض.</li>
+                <li>📍 تغطية شاملة: نغطي جميع أحياء الرياض بلا استثناء.</li>
+                <li>🛡️ سجل تجاري موثق: مؤسسة رسمية (رقم السجل: 1010590128).</li>
+            </ul>
+        </div>
+        
         <div class="section" id="areas">
             <h2>أحياء الرياض المغطاة</h2>
             <p style="font-size: 1.2rem; font-weight: bold; color: #333;">
-                نغطي جميع مناطق مدينة **الرياض** على مدار الساعة لتلبية احتياجاتكم الفورية.
+                نغطي جميع مناطق مدينة الرياض على مدار الساعة لتلبية احتياجاتكم الفورية.
             </p>
-            <p style="font-size: 1.1rem; color: #555; border-bottom: 2px solid #f0f0f0; padding-bottom: 15px; margin-bottom: 20px;">
-                تشمل تغطيتنا: **شمال الرياض، جنوب الرياض، وسط الرياض، شرق الرياض، وغرب الرياض** بالكامل.
-                للتأكد من تغطية حيكم بالتفصيل، يرجى التواصل معنا مباشرة.
-            </p>
+            <ul>
+                <li>✅ جميع أنحاء الرياض</li>
+                <li>✅ شمال الرياض</li>
+                <li>✅ جنوب الرياض</li>
+                <li>✅ وسط الرياض</li>
+                <li>✅ شرق الرياض</li>
+                <li>✅ غرب الرياض</li>
+            </ul>
+            <p style="font-size: 1.1rem; color: #555;">للتأكد من تغطية حيكم بالتفصيل، يرجى التواصل معنا مباشرة.</p>
             
             <div class="contact-buttons-container">
                 <h3>اطلب وايت المياه الآن لنصلك فوراً!</h3>
@@ -353,48 +411,41 @@
             </div>
         </div>
 
-        <div class="section" id="prices">
-            <h2>أسعارنا</h2>
-            <p>نقدم أسعارًا تنافسية حسب حجم الوايت والحي الذي تتواجدون فيه:</p>
-            <table class="pricing-table">
-                <thead>
-                    <tr>
-                        <th>حجم الوايت</th>
-                        <th>السعة التقريبية</th>
-                        <th>السعر التقريبي (يبدأ من)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>وايت 6 طن</td>
-                        <td>6,000 لتر</td>
-                        <td>150 ريال سعودي</td>
-                    </tr>
-                    <tr>
-                        <td>وايت 18 طن</td>
-                        <td>18,000 لتر</td>
-                        <td>200 ريال سعودي</td>
-                    </tr>
-                    <tr>
-                        <td>وايت 20 طن</td>
-                        <td>20,000 لتر</td>
-                        <td>250 ريال سعودي</td>
-                    </tr>
-                </tbody>
-            </table>
-            <p class="note">⚠️ الأسعار المذكورة أعلاه هي أسعار تقديرية. يرجى التواصل معنا لتحديد السعر الدقيق حسب موقعك وحالة الزحام. تتوفر خصومات للعقود الشهرية والمشاريع.</p>
+        <div class="section" id="prices" style="text-align: center;">
+            <img src="./2.webp" alt="أيقونة سعر تنافسي وخصومات" class="price-icon">
+            <h2>الأسعار والاشتراكات</h2>
+            <p style="font-size: 1.1rem; color: #333;">نحرص على تقديم أفضل الأسعار التنافسية في جميع أحياء الرياض لضمان حصولك على مياه نقية بأقل تكلفة.</p>
+            <ul style="list-style: none; padding-right: 0; text-align: right;">
+                <li>💰 أسعار مميزة لجميع أحجام الوايتات (6، 18،طن).</li>
+                <li>💳 
+                    خصومات خاصة
+                     على الاشتراك الشهري لتوريد المياه بانتظام للمطاعم والشركات والمنازل.</li>
+                <li>💵 لا توجد رسوم خفية – السعر يشمل التوصيل إلى خزانك مباشرة.</li>
+            </ul>
+            <div class="contact-buttons-container" style="margin-top: 30px;">
+                <h3>اطلب عرض سعر خاص الآن!</h3>
+                <a href="tel:+966560898767" class="order-now">📞 اتصال مباشر</a>
+            </div>
         </div>
 
         <div class="section" id="testimonials">
             <h2>آراء عملائنا الكرام</h2>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
-                    <p class="quote">"الخدمة سريعة وممتازة! طلبت وايت 18 طن لحي النرجس، ووصل في أقل من ساعتين. والمياه نظيفة جداً وبدون أي شوائب."</p>
-                    <p class="author">⭐ أبو خالد - شمال الرياض</p>
+                    <p class="quote">"الخدمة سريعة وممتازة! طلبت وايت 
+                        18 طن
+                         لحي النرجس، ووصل في أقل من ساعتين. والمياه نظيفة جداً وبدون أي شوائب."</p>
+                    <p class="author">⭐
+
+                        أبو خالد
+                         - شمال الرياض</p>
                 </div>
                 <div class="testimonial-card">
                     <p class="quote">"نتعامل معهم لتوريد المياه للمطعم شهرياً. ملتزمون بالمواعيد والجودة ثابتة والأسعار تنافسية جداً. شكراً لجهودكم."</p>
-                    <p class="author">⭐ مدير مطعم - وسط الرياض</p>
+                    <p class="author">⭐ 
+
+                        مدير مطعم
+                         - وسط الرياض</p>
                 </div>
                 <div class="testimonial-card">
                     <p class="quote">"احتجت وايت صغير (6 طن) بشكل مستعجل في عكاظ، وكانوا عند حسن الظن. سهولة في الطلب والتعامل راقٍ ومحترم من السائق."</p>
@@ -405,7 +456,7 @@
 
         <div class="section" id="contact">
             <h2>تواصل معنا</h2>
-            <p>يمكنك التواصل معنا على مدار الساعة للحجز أو الاستفسار عن أسرع وايت مياه*:</p>
+            <p>يمكنك التواصل معنا على مدار الساعة للحجز أو الاستفسار عن أسرع وايت مياه:</p>
             <a href="tel:+966560898767" class="order-now">📞 اتصل بنا</a>
             <a href="https://wa.me/966560898767" target="_blank" class="order-now" style="background-color:#25d366;color:white;">💬 واتساب</a>
         </div>
@@ -414,7 +465,7 @@
             <h3>مؤسسة زياد عبدالله فهد الدوسري</h3>
             <p>وايت مياه صالحة للشرب – خدمة 24/7 – جميع أحياء الرياض</p>
             
-            <a href="tel:+966560898767">📞 للتواصل</a>
+            <a href="tel:+966560898767">📞 التواصل</a>
             
             <p>رقم السجل التجاري: 1010590128</p>
         </div>
@@ -427,25 +478,26 @@
     <script>
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
-            const content = document.getElementById('content');
             const menuToggle = document.querySelector('.menu-toggle');
 
             sidebar.classList.toggle('active');
-            content.classList.toggle('dimmed');
+            
+            // تم إزالة تعتيم المحتوى بناءً على طلبك
+            // document.getElementById('content').classList.toggle('dimmed'); 
             
             const isExpanded = sidebar.classList.contains('active');
             menuToggle.setAttribute('aria-expanded', isExpanded);
         }
 
+        // إغلاق القائمة عند النقر على أي رابط داخلي
         document.querySelectorAll('.sidebar ul li a').forEach(link => {
             link.addEventListener('click', () => {
                 document.getElementById('sidebar').classList.remove('active');
-                document.getElementById('content').classList.remove('dimmed');
                 document.querySelector('.menu-toggle').setAttribute('aria-expanded', 'false');
             });
         });
 
-        // ظهور الأقسام عند التمرير (في الاتجاهين)
+        // ظهور الأقسام عند التمرير (Animation)
         document.addEventListener('DOMContentLoaded', function() {
             function checkVisibility() {
                 const sections = document.querySelectorAll('.section');
@@ -455,11 +507,9 @@
                     const sectionTop = section.getBoundingClientRect().top;
                     const sectionBottom = section.getBoundingClientRect().bottom;
                     
-                    // يتم عرض القسم إذا كان جزئيًا في الرؤية
                     if (sectionTop < windowHeight - 100 && sectionBottom > 0) {
                         section.classList.add('visible');
                     } else {
-                        // يتم إخفاء القسم إذا خرج بالكامل من الرؤية
                         section.classList.remove('visible');
                     }
                 });
